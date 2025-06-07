@@ -1,8 +1,6 @@
 
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
 
 interface SuccessStory {
   id: number;
@@ -24,7 +22,6 @@ const stories: SuccessStory[] = [
     imageHint: "family silhouette", // Updated hint
     summary: "The Johnson family embarked on a zero-waste journey, reducing their household waste by over 90% in just one year through careful consumption, composting, and DIY solutions.",
     category: "Individual",
-    link: "#"
   },
   {
     id: 2,
@@ -43,7 +40,6 @@ const stories: SuccessStory[] = [
     imageHint: "eco packaging",
     summary: "EcoMindful Solutions Inc. redesigned their product packaging using 100% recycled and biodegradable materials, significantly reducing their environmental footprint and inspiring industry change.",
     category: "Organization",
-    link: "#"
   },
 ];
 
@@ -85,13 +81,7 @@ const SuccessStoriesSection = () => {
               {story.link && (
                 <>
                   <CardFooter className="p-6 pt-0"></CardFooter>
-                  <CardFooter className="p-6 pt-0">
-                    <Button variant="outline" size="sm" asChild className="w-full border-primary text-primary hover:bg-primary/10">
-                      <a href={story.link} target="_blank" rel="noopener noreferrer">
-                        Read More <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                  </CardFooter>
+                  <CardFooter className="p-6 pt-0"></CardFooter>
                 </>
               )}
             </Card>
