@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -19,7 +20,7 @@ const stories: SuccessStory[] = [
     id: 1,
     title: "Zero Waste Family Transformation",
     protagonist: "The Johnson Family",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageUrl: "https://source.unsplash.com/600x400/?family,smiling",
     imageHint: "family smiling",
     summary: "The Johnson family embarked on a zero-waste journey, reducing their household waste by over 90% in just one year through careful consumption, composting, and DIY solutions.",
     category: "Individual",
@@ -29,7 +30,7 @@ const stories: SuccessStory[] = [
     id: 2,
     title: "Community Recycling Drive Success",
     protagonist: "Greenwood Neighborhood Association",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageUrl: "https://source.unsplash.com/600x400/?community,event",
     imageHint: "community event",
     summary: "The Greenwood Neighborhood Association organized a massive electronics recycling drive, diverting tons of e-waste from landfills and raising awareness about responsible disposal.",
     category: "Community",
@@ -38,7 +39,7 @@ const stories: SuccessStory[] = [
     id: 3,
     title: "Sustainable Packaging Initiative",
     protagonist: "EcoPack Solutions Inc.",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageUrl: "https://source.unsplash.com/600x400/?eco,packaging",
     imageHint: "eco packaging",
     summary: "EcoPack Solutions Inc. redesigned their product packaging using 100% recycled and biodegradable materials, significantly reducing their environmental footprint and inspiring industry change.",
     category: "Organization",

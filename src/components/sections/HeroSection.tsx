@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -24,12 +25,13 @@ const HeroSection = () => {
         </div>
         <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl group">
           <Image
-            src="https://placehold.co/600x400.png"
+            src="https://source.unsplash.com/600x400/?nature,environment"
             alt="Lush green forest"
             layout="fill"
             objectFit="cover"
             className="transform transition-transform duration-500 group-hover:scale-110"
             data-ai-hint="nature environment"
+            priority
           />
            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
         </div>
