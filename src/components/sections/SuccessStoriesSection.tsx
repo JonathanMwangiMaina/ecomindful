@@ -10,7 +10,6 @@ interface SuccessStory {
   protagonist: string;
   imageUrl: string;
   imageHint: string;
-  summary: string;
   category: "Individual" | "Community" | "Organization";
   link?: string;
 }
@@ -20,8 +19,8 @@ const stories: SuccessStory[] = [
     id: 1,
     title: "Zero Waste Family Transformation",
     protagonist: "The Johnson Family",
-    imageUrl: "https://source.unsplash.com/600x400/?family,smiling",
-    imageHint: "family smiling",
+    imageUrl: "https://source.unsplash.com/7noZJ_4nhU8/600x400", // Updated URL
+    imageHint: "family silhouette", // Updated hint
     summary: "The Johnson family embarked on a zero-waste journey, reducing their household waste by over 90% in just one year through careful consumption, composting, and DIY solutions.",
     category: "Individual",
     link: "#"
@@ -30,7 +29,7 @@ const stories: SuccessStory[] = [
     id: 2,
     title: "Community Recycling Drive Success",
     protagonist: "Greenwood Neighborhood Association",
-    imageUrl: "https://source.unsplash.com/600x400/?community,event",
+    imageUrl: "https://source.unsplash.com/600x400/?community%20event",
     imageHint: "community event",
     summary: "The Greenwood Neighborhood Association organized a massive electronics recycling drive, diverting tons of e-waste from landfills and raising awareness about responsible disposal.",
     category: "Community",
@@ -39,7 +38,7 @@ const stories: SuccessStory[] = [
     id: 3,
     title: "Sustainable Packaging Initiative",
     protagonist: "EcoPack Solutions Inc.",
-    imageUrl: "https://source.unsplash.com/600x400/?eco,packaging",
+    imageUrl: "https://source.unsplash.com/600x400/?eco%20packaging",
     imageHint: "eco packaging",
     summary: "EcoPack Solutions Inc. redesigned their product packaging using 100% recycled and biodegradable materials, significantly reducing their environmental footprint and inspiring industry change.",
     category: "Organization",
