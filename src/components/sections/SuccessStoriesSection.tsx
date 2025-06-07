@@ -20,7 +20,7 @@ const stories: SuccessStory[] = [
     id: 1,
     title: "Zero Waste Family Transformation",
     protagonist: "The Johnson Family",
-    imageUrl: "https://unsplash.com/photos/silhouette-photo-of-five-person-walking-on-seashore-during-golden-hour-7noZJ_4nhU8", // Updated URL
+    imageUrl: "https://unsplash.com/photos/7noZJ_4nhU8/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQ5MzIwMDUzfA&force=true&w=640", // Updated URL
     imageHint: "family silhouette", // Updated hint
     summary: "The Johnson family embarked on a zero-waste journey, reducing their household waste by over 90% in just one year through careful consumption, composting, and DIY solutions.",
     category: "Individual",
@@ -29,19 +29,19 @@ const stories: SuccessStory[] = [
   {
     id: 2,
     title: "Community Recycling Drive Success",
-    protagonist: "Greenwood Neighborhood Association",
-    imageUrl: "https://unsplash.com/photos/man-in-blue-crew-neck-t-shirt-holding-white-textile-9SLGGEzrZnQ",
+    protagonist: "OCG",
+    imageUrl: "https://unsplash.com/photos/9SLGGEzrZnQ/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQ5MzE5MjU5fA&force=true&w=640",
     imageHint: "community event",
-    summary: "The Greenwood Neighborhood Association organized a massive electronics recycling drive, diverting tons of e-waste from landfills and raising awareness about responsible disposal.",
+    summary: "The OCG organized a massive electronics recycling drive, diverting tons of e-waste from landfills and raising awareness about responsible disposal.",
     category: "Community",
   },
   {
     id: 3,
     title: "Sustainable Packaging Initiative",
-    protagonist: "EcoPack Solutions Inc.",
-    imageUrl: "https://unsplash.com/photos/a-box-and-a-cup-of-coffee-xT-OoC3Zg_c",
+    protagonist: "EcoMindful Solutions Inc.",
+    imageUrl: "https://unsplash.com/photos/xT-OoC3Zg_c/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQ5MzE2NTIxfA&force=true&w=640",
     imageHint: "eco packaging",
-    summary: "EcoPack Solutions Inc. redesigned their product packaging using 100% recycled and biodegradable materials, significantly reducing their environmental footprint and inspiring industry change.",
+    summary: "EcoMindful Solutions Inc. redesigned their product packaging using 100% recycled and biodegradable materials, significantly reducing their environmental footprint and inspiring industry change.",
     category: "Organization",
     link: "#"
   },
@@ -83,13 +83,7 @@ const SuccessStoriesSection = () => {
                 </p>
               </CardContent>
               {story.link && (
-                <CardFooter className="p-6 pt-0">
-                  <Button variant="outline" size="sm" asChild className="w-full border-primary text-primary hover:bg-primary/10">
-                    <a href={story.link} target="_blank" rel="noopener noreferrer">
-                      Read More <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                </CardFooter>
+                <CardFooter className="p-6 pt-0"></CardFooter>
               )}
             </Card>
           ))}
