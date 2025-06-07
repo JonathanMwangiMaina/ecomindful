@@ -83,7 +83,16 @@ const SuccessStoriesSection = () => {
                 </p>
               </CardContent>
               {story.link && (
-                <CardFooter className="p-6 pt-0"></CardFooter>
+                <>
+                  <CardFooter className="p-6 pt-0"></CardFooter>
+                  <CardFooter className="p-6 pt-0">
+                    <Button variant="outline" size="sm" asChild className="w-full border-primary text-primary hover:bg-primary/10">
+                      <a href={story.link} target="_blank" rel="noopener noreferrer">
+                        Read More <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </CardFooter>
+                </>
               )}
             </Card>
           ))}
