@@ -25,7 +25,7 @@ const HeroSection = () => {
         </div>
         <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl group">
           <Image
-            src="https://source.unsplash.com/600x400/?nature,environment"
+            src="https://unsplash.com/photos/a-forest-with-trees-MpfGGMk9ssc"
             alt="Lush green forest"
             layout="fill"
             objectFit="cover"
