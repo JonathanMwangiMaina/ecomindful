@@ -1,13 +1,14 @@
+
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
+import { useActionState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPersonalizedTipsAction, type FormState } from "@/app/actions";
-import { useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Sparkles, Loader2 } from "lucide-react";
 
@@ -26,7 +27,7 @@ function SubmitButton() {
 }
 
 const PersonalizedTipsSection = () => {
-  const [state, formAction] = useFormState(getPersonalizedTipsAction, initialState);
+  const [state, formAction] = useActionState(getPersonalizedTipsAction, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -39,7 +40,7 @@ const PersonalizedTipsSection = () => {
       });
       if (!state.isError && state.tips) {
         // Optionally clear form on success, or keep data
-        // formRef.current?.reset(); 
+        // formRef.current?.reset();
       }
     }
   }, [state, toast]);
