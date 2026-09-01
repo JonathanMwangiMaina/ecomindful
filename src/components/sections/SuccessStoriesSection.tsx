@@ -1,47 +1,8 @@
+"use client";
 
-import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-
-interface SuccessStory {
-  id: number;
-  title: string;
-  protagonist: string;
-  imageUrl: string;
-  imageHint: string;
-  category: "Individual" | "Community" | "Organization";
-  summary: string;
-  link?: string;
-}
-
-const stories: SuccessStory[] = [
-  {
-    id: 1,
-    title: "Zero Waste Family Transformation",
-    protagonist: "The Johnson Family",
-    imageUrl: "https://unsplash.com/photos/7noZJ_4nhU8/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQ5MzIwMDUzfA&force=true&w=640", // Updated URL
-    imageHint: "family silhouette", // Updated hint
-    summary: "The Johnson family embarked on a zero-waste journey, reducing their household waste by over 90% in just one year through careful consumption, composting, and DIY solutions.",
-    category: "Individual",
-  },
-  {
-    id: 2,
-    title: "Community Recycling Drive Success",
-    protagonist: "OCG",
-    imageUrl: "https://unsplash.com/photos/9SLGGEzrZnQ/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQ5MzE5MjU5fA&force=true&w=640",
-    imageHint: "community event",
-    summary: "The OCG organized a massive electronics recycling drive, diverting tons of e-waste from landfills and raising awareness about responsible disposal.",
-    category: "Community",
-  },
-  {
-    id: 3,
-    title: "Sustainable Packaging Initiative",
-    protagonist: "EcoMindful Solutions Inc.",
-    imageUrl: "https://unsplash.com/photos/xT-OoC3Zg_c/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQ5MzE2NTIxfA&force=true&w=640",
-    imageHint: "eco packaging",
-    summary: "EcoMindful Solutions Inc. redesigned their product packaging using 100% recycled and biodegradable materials, significantly reducing their environmental footprint and inspiring industry change.",
-    category: "Organization",
-  },
-];
+import Image from "next/image";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SUCCESS_STORIES } from "@/lib/constants";
 
 const SuccessStoriesSection = () => {
   return (
@@ -55,7 +16,7 @@ const SuccessStoriesSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {stories.map((story) => (
+          {SUCCESS_STORIES.map((story) => (
             <Card key={story.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card">
               <CardHeader className="p-0">
                 <div className="relative aspect-video w-full">
@@ -78,12 +39,6 @@ const SuccessStoriesSection = () => {
                   {story.summary}
                 </p>
               </CardContent>
-              {story.link && (
-                <>
-                  <CardFooter className="p-6 pt-0"></CardFooter>
-                  <CardFooter className="p-6 pt-0"></CardFooter>
-                </>
-              )}
             </Card>
           ))}
         </div>

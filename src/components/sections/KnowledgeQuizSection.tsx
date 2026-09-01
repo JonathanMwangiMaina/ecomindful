@@ -1,50 +1,12 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, XCircle, RefreshCw, Trophy } from 'lucide-react';
-
-interface QuizQuestion {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: string;
-  explanation?: string;
-}
-
-const quizData: QuizQuestion[] = [
-  {
-    id: 1,
-    question: "What does the 'Reduce' principle in the 3Rs primarily focus on?",
-    options: ["Processing waste materials into new products", "Using items multiple times", "Minimizing waste generation at the source", "Sorting waste for collection"],
-    correctAnswer: "Minimizing waste generation at the source",
-    explanation: "Reduce is about lessening the amount of waste we produce in the first place."
-  },
-  {
-    id: 2,
-    question: "Which of these is an example of 'Reusing'?",
-    options: ["Buying recycled paper", "Composting food scraps", "Using a cloth bag for shopping", "Putting plastic bottles in a recycling bin"],
-    correctAnswer: "Using a cloth bag for shopping",
-    explanation: "Reusing involves using an item again in its original form or for a new purpose."
-  },
-  {
-    id: 3,
-    question: "What is the main goal of 'Recycling'?",
-    options: ["To decrease consumption of new goods", "To convert waste materials into new usable products", "To extend the life of existing products", "To reduce the need for landfills"],
-    correctAnswer: "To convert waste materials into new usable products",
-    explanation: "Recycling processes used materials into new products, reducing the need for virgin raw materials."
-  },
-  {
-    id: 4,
-    question: "Which of the following is NOT a primary benefit of practicing the 3Rs?",
-    options: ["Conserving natural resources", "Reducing landfill waste", "Increasing greenhouse gas emissions", "Saving energy"],
-    correctAnswer: "Increasing greenhouse gas emissions",
-    explanation: "Practicing the 3Rs helps reduce greenhouse gas emissions by conserving resources and energy."
-  },
-];
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, XCircle, RefreshCw, Trophy } from "lucide-react";
+import { QUIZ_DATA } from "@/lib/constants";
 
 const KnowledgeQuizSection = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -52,19 +14,17 @@ const KnowledgeQuizSection = () => {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [isClient, setIsClient]
- = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-
   if (!isClient) {
-    return null; // Or a loading skeleton
+    return null;
   }
 
-  const currentQuestion = quizData[currentQuestionIndex];
+  const currentQuestion = QUIZ_DATA[currentQuestionIndex];
 
   const handleAnswerSelection = (answer: string) => {
     if (!isAnswered) {
@@ -84,7 +44,7 @@ const KnowledgeQuizSection = () => {
   const handleNextQuestion = () => {
     setIsAnswered(false);
     setSelectedAnswer(null);
-    if (currentQuestionIndex < quizData.length - 1) {
+    if (currentQuestionIndex < QUIZ_DATA.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       setShowResult(true);
@@ -105,15 +65,15 @@ const KnowledgeQuizSection = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Card className="max-w-md mx-auto shadow-xl">
             <CardHeader>
-              <CardTitle className="text-3xl text-primary flex items-center justify-center gap-2"><Trophy className="w-8 h-8"/>Quiz Completed!</CardTitle>
+              <CardTitle className="text-3xl text-primary flex items-center justify-center gap-2"><Trophy className="w-8 h-8" />Quiz Completed!</CardTitle>
               <CardDescription>Here's how you did:</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-4xl font-bold mb-2">
-                {score} / {quizData.length}
+                {score} / {QUIZ_DATA.length}
               </p>
               <p className="text-lg text-foreground/80">
-                {score / quizData.length >= 0.7 ? "Great job! You're an Eco-Champion!" : "Good effort! Keep learning about the 3Rs."}
+                {score / QUIZ_DATA.length >= 0.7 ? "Great job! You're an Eco-Champion!" : "Good effort! Keep learning about the 3Rs."}
               </p>
             </CardContent>
             <CardFooter>
@@ -140,7 +100,7 @@ const KnowledgeQuizSection = () => {
 
         <Card className="max-w-xl mx-auto shadow-xl">
           <CardHeader>
-            <CardTitle className="text-xl">Question {currentQuestionIndex + 1} of {quizData.length}</CardTitle>
+            <CardTitle className="text-xl">Question {currentQuestionIndex + 1} of {QUIZ_DATA.length}</CardTitle>
             <CardDescription className="text-lg pt-2">{currentQuestion.question}</CardDescription>
           </CardHeader>
           <CardContent>
@@ -162,7 +122,7 @@ const KnowledgeQuizSection = () => {
                   <Label
                     key={index}
                     htmlFor={`option-${index}`}
-                    className={`flex items-center space-x-3 p-4 rounded-md border-2 transition-all cursor-pointer ${itemClass} ${isAnswered ? 'cursor-not-allowed' : ''}`}
+                    className={`flex items-center space-x-3 p-4 rounded-md border-2 transition-all cursor-pointer ${itemClass} ${isAnswered ? "cursor-not-allowed" : ""}`}
                   >
                     <RadioGroupItem value={option} id={`option-${index}`} disabled={isAnswered} />
                     <span>{option}</span>
@@ -173,7 +133,7 @@ const KnowledgeQuizSection = () => {
               })}
             </RadioGroup>
             {isAnswered && currentQuestion.explanation && (
-              <p className={`mt-4 text-sm p-3 rounded-md ${selectedAnswer === currentQuestion.correctAnswer ? 'bg-green-500/10 text-green-700' : 'bg-red-500/10 text-red-700'}`}>
+              <p className={`mt-4 text-sm p-3 rounded-md ${selectedAnswer === currentQuestion.correctAnswer ? "bg-green-500/10 text-green-700" : "bg-red-500/10 text-red-700"}`}>
                 {currentQuestion.explanation}
               </p>
             )}
@@ -185,7 +145,7 @@ const KnowledgeQuizSection = () => {
               </Button>
             ) : (
               <Button onClick={handleNextQuestion} className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                {currentQuestionIndex < quizData.length - 1 ? 'Next Question' : 'Show Results'}
+                {currentQuestionIndex < QUIZ_DATA.length - 1 ? "Next Question" : "Show Results"}
               </Button>
             )}
           </CardFooter>

@@ -1,0 +1,27 @@
+{
+  "name": "EcoMindful - Embrace the 3Rs",
+  "short_name": "EcoMindful",
+  "description": "Learn and practice Reduce, Reuse, Recycle for a sustainable future. Personalized AI-powered tips, interactive quizzes, and inspiring success stories.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F5DC",
+  "theme_color": "#388E3C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle", "environment"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
