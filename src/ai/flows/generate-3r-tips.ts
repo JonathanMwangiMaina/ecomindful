@@ -9,22 +9,25 @@
  * - Generate3RTipsOutput - The return type for the generate3RTips function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
 
 const Generate3RTipsInputSchema = z.object({
   lifestyle: z
     .string()
+    .min(10, 'Please provide more details about your lifestyle')
     .describe(
       'Description of the user lifestyle, daily habits and routines, and personal interests.'
     ),
   location: z
     .string()
+    .min(3, 'Please provide a valid location')
     .describe(
       'The user location including country, city, and immediate environment such as apartment, house, office, etc.'
     ),
   goals: z
     .string()
+    .min(10, 'Please provide more details about your goals')
     .describe(
       'Specific environmental conservation goals the user has (e.g., reduce waste, conserve water, save energy).'
     ),
@@ -33,7 +36,9 @@ export type Generate3RTipsInput = z.infer<typeof Generate3RTipsInputSchema>;
 
 const Generate3RTipsOutputSchema = z.object({
   tips: z
-    .array(z.string())
+    .array(z.string().min(20).max(500))
+    .min(3, 'At least 3 tips required')
+    .max(8, 'Maximum 8 tips allowed')
     .describe('A list of personalized and actionable tips for implementing the 3Rs in daily life.'),
 });
 export type Generate3RTipsOutput = z.infer<typeof Generate3RTipsOutputSchema>;
@@ -44,21 +49,32 @@ export async function generate3RTips(input: Generate3RTipsInput): Promise<Genera
 
 const prompt = ai.definePrompt({
   name: 'generate3RTipsPrompt',
-  input: {schema: Generate3RTipsInputSchema},
-  output: {schema: Generate3RTipsOutputSchema},
-  prompt: `You are an expert in sustainable living and environmental conservation. Generate personalized and actionable tips for implementing the 3Rs (Reduce, Reuse, Recycle) in the user\'s daily life, based on their specific context and needs.
+  input: { schema: Generate3RTipsInputSchema },
+  output: { schema: Generate3RTipsOutputSchema },
+  config: {
+    temperature: 0.7,
+    maxOutputTokens: 2048,
+  },
+  prompt: `You are an expert sustainability coach specializing in the 3Rs: Reduce, Reuse, Recycle. 
+Generate personalized, practical, and actionable tips for implementing the 3Rs in the user's daily life.
 
-Consider the following information about the user:
+User Context:
+- Lifestyle: {{{lifestyle}}}
+- Location: {{{location}}}
+- Conservation Goals: {{{goals}}}
 
-Lifestyle: {{{lifestyle}}}
-Location: {{{location}}}
-Goals: {{{goals}}}
+Requirements:
+1. Provide 5-7 tips total
+2. Each tip must be specific, actionable, and relevant to the user's context
+3. Cover at least 2 of the 3 Rs (Reduce, Reuse, Recycle) across all tips
+4. Include local/regional considerations when relevant
+5. Tips should be implementable within 1-2 weeks
+6. Format as a JSON array of strings only
 
-Provide a list of tips that are practical, easy to implement, and relevant to the user\'s situation. Focus on specific actions the user can take to reduce their environmental impact.
+Example good tip: "Set up a composting bin for food scraps in your apartment - many cities like yours offer curbside compost pickup or community drop-off sites."
+Example bad tip: "Recycle more."
 
-Format the output as a JSON array of strings.
-
-`,
+Output ONLY the JSON array of tips.`,
 });
 
 const generate3RTipsFlow = ai.defineFlow(
@@ -67,8 +83,11 @@ const generate3RTipsFlow = ai.defineFlow(
     inputSchema: Generate3RTipsInputSchema,
     outputSchema: Generate3RTipsOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
+  async (input) => {
+    const { output } = await prompt(input);
+    if (!output?.tips || output.tips.length < 3) {
+      throw new Error('Failed to generate sufficient tips');
+    }
+    return output;
   }
 );
